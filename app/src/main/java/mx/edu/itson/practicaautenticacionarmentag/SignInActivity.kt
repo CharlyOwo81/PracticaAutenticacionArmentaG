@@ -41,10 +41,13 @@ class SignInActivity : AppCompatActivity() {
                         //Sign-in correcto
                         Log.d("INFO", "signInWithEmail:success")
                         val user = auth.currentUser
-                        val intent = Intent(this, MainActivity::class.java)
-
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        startActivity(intent)
+                        if (user != null) {
+                            // Pass the user email to the MainActivity
+                            val intent = Intent(this, MainActivity::class.java)
+                            intent.putExtra("user", user.email) // Pass the email to MainActivity
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
+                        }
                     } else {
                         //Sign-in fallido
                         Log.w("ERROR", "signInWithEmail:failure", task.exception)

@@ -29,6 +29,7 @@ class LoginActivity : AppCompatActivity() {
         val errorTv : TextView = findViewById(R.id.tvError)
 
         val button : Button = findViewById(R.id.btnLogin)
+        val registerButton : Button = findViewById(R.id.btnGoRegister)
 
         errorTv.visibility = View.INVISIBLE
 
@@ -43,6 +44,11 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 showError("Por favor, ingresa un correo y una contraseña", true)
             }
+        }
+
+        registerButton.setOnClickListener {
+            val intent = Intent(this, SignInActivity::class.java)
+            startActivity(intent)
         }
     }
 

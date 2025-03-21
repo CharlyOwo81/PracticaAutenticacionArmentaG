@@ -23,6 +23,13 @@ class MainActivity : AppCompatActivity() {
         val user : TextView = findViewById(R.id.tvUser)
         val button: Button = findViewById(R.id.btnLogout)
 
+        // Set the email in the TextView
+        if (email != null) {
+            user.text = "Welcome, $email"  // Show the user's email in the TextView
+        } else {
+            user.text = "Welcome, Guest"  // If email is null, show a default message
+        }
+
         button.setOnClickListener {
             Firebase.auth.signOut()
             val intent = Intent(this, LoginActivity::class.java)
